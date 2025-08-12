@@ -6,12 +6,8 @@ import { useChatStore } from "../stores/useChatStore";
 
 export default function Messages() {
   const { conversationId } = useParams();
-  const {
-    setActiveConversation,
-    fetchConversation,
-    conversations,
-    loading,
-  } = useChatStore();
+  const { setActiveConversation, fetchConversation, conversations, loading } =
+    useChatStore();
 
   useEffect(() => {
     if (conversationId) {
@@ -23,7 +19,7 @@ export default function Messages() {
   const messages = conversations[conversationId] || [];
 
   return (
-    <div className="w-full h-[calc(100vh-64px)] flex border dark:border-gray-700 rounded-md overflow-hidden">
+    <div className="w-full h-[calc(100vh-64px)] flex border dark:border-gray-700 rounded-md overflow-hidden pl-64">
       <ChatSidebar />
 
       {conversationId ? (

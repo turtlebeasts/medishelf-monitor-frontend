@@ -7,7 +7,7 @@ export default function Login() {
   const { loginUser, loading, errors } = useUserStore();
 
   const [form, setForm] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -20,14 +20,17 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await loginUser(form);
-    if (!errors) navigate("/dashboard");
+    try {
+      await loginUser(form);
+      navigate("/dashboard");
+    } catch (err) {
+      console.log(err.response?.data?.error || "Login failed");
+    }
   };
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-gray-100 dark:from-black dark:to-gray-900 transition-all duration-300">
       <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
-        {/* Header */}
         <h2 className="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white">
           Welcome Back 👋
         </h2>
@@ -35,25 +38,26 @@ export default function Login() {
           Login to your Medishelf account
         </p>
 
-        {/* Error */}
         {errors && (
           <div className="mb-4 text-sm text-red-500 text-center">
             {typeof errors === "string" ? errors : "Invalid email or password."}
           </div>
         )}
 
-        {/* Form */}
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="email" className="block text-sm mb-1 text-gray-700 dark:text-gray-300">
+            <label
+              htmlFor="email"
+              className="block text-sm mb-1 text-gray-700 dark:text-gray-300"
+            >
               Email
             </label>
             <input
               id="email"
-              name="email"
-              type="email"
-              placeholder="you@example.com"
-              value={form.email}
+              name="username"
+              type="text"
+              placeholder="abcd"
+              value={form.username}
               onChange={handleChange}
               className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800 dark:text-white"
               required
@@ -61,7 +65,10 @@ export default function Login() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm mb-1 text-gray-700 dark:text-gray-300">
+            <label
+              htmlFor="password"
+              className="block text-sm mb-1 text-gray-700 dark:text-gray-300"
+            >
               Password
             </label>
             <input
@@ -89,10 +96,12 @@ export default function Login() {
           </button>
         </form>
 
-        {/* Footer */}
         <p className="mt-6 text-sm text-center text-gray-500 dark:text-gray-400">
           Don't have an account?{" "}
-          <Link to="/register" className="text-blue-600 hover:underline dark:text-blue-400">
+          <Link
+            to="/register"
+            className="text-blue-600 hover:underline dark:text-blue-400"
+          >
             Register
           </Link>
         </p>

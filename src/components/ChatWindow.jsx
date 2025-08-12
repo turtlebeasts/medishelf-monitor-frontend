@@ -7,7 +7,9 @@ export default function ChatWindow({ messages, loading }) {
 
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
         {loading ? (
-          <div className="text-gray-500 dark:text-gray-400">Loading messages...</div>
+          <div className="text-gray-500 dark:text-gray-400">
+            Loading messages...
+          </div>
         ) : (
           messages.map((msg, index) => (
             <div

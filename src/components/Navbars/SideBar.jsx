@@ -7,13 +7,21 @@ export default function Sidebar() {
 
   const navItems = [
     { label: "Home", icon: <FiHome />, path: "/dashboard" },
-    { label: "Post Medicine", icon: <FiPlusCircle />, path: "/dashboard/your-medicines" },
-    { label: "Messages", icon: <LuMessagesSquare />, path: "/dashboard/messages" },
+    {
+      label: "Post Medicine",
+      icon: <FiPlusCircle />,
+      path: "/dashboard/your-medicines",
+    },
+    {
+      label: "Messages",
+      icon: <LuMessagesSquare />,
+      path: "/dashboard/messages",
+    },
     { label: "Profile", icon: <FiUser />, path: "/dashboard/profile" },
   ];
 
   return (
-    <aside className="h-screen w-64 bg-white dark:bg-gray-900 border-r dark:border-gray-700 p-6 space-y-6">
+    <aside className="fixed top-0 left-0 h-screen w-64 bg-white dark:bg-gray-900 border-r dark:border-gray-700 p-6 space-y-6">
       <h2 className="text-2xl font-bold text-blue-600">💊 Medishelf</h2>
 
       <nav className="space-y-2">
