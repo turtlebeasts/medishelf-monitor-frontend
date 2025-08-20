@@ -55,7 +55,7 @@ export const useUserStore = create(
         try {
           set({ loading: true, errors: null });
 
-          const res = await axios.post(`${BASE_URL}/register`, userData);
+          const res = await axios.post(`${BASE_URL}/register/`, userData);
 
           set({ loading: false });
           return res.data.message;
